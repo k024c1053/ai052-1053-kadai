@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ガチャシミュレーション</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">ガチャシミュレーション</h1>
+
+        <form action="/gacha" method="POST" class="text-center">
+            <button type="submit" name="gacha_type" value="single" class="btn btn-primary">通常ガチャ</button>
+            <button type="submit" name="gacha_type" value="eleven" class="btn btn-danger">11連ガチャ</button>
+        </form>
+
+        <h2>結果</h2>
+        {% if results %}
+            <div class="d-flex flex-wrap">
+                {% for rank, character in results %}
+                    <div class="card m-2">
+                        <p>{{ rank }}</p>
+                        <img src="{{ url_for('static', filename='images/' + character) }}" alt="{{ character }}" class="img-fluid">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <h2>累計結果</h2>
+        <ul>
+            <li>引いた回数: {{ summary['play_count'] }}回</li>
+            <li>通常ガチャ: {{ summary['single_count'] }}回</li>
+            <li>11連ガチャ: {{ summary['eleven_count'] }}回</li>
+            <li>使った金額: {{ summary['cost'] }}円</li>
+            <li>SR+コレクション: {{ summary['sr_plus_collection'] }} / 10 種類</li>
+        </ul>
+
+        <form action="/reset" method="POST">
+            <button type="submit" class="btn btn-warning">リセット</button>
+        </form>
+    </div>
+</body>
+</html>
