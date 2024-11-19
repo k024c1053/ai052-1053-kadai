@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from gacha import Gacha
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+# app.secret_key = 'your_secret_key'
 gacha = Gacha()
 
 @app.route('/')
@@ -19,6 +19,8 @@ def gacha_draw():
         results = [gacha.draw_single()]
     elif gacha_type == "eleven":
         results = gacha.draw_eleven()
+    else:
+        results = None
 
     summary = gacha.get_summary()
     return render_template("index.html", results=results, summary=summary)
