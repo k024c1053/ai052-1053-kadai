@@ -1,10 +1,11 @@
 import random
 
 
+# キャラクターの画像パスを管理するクラス
 class CharacterPool:
 
     def __init__(self):
-        # ランクごとのフォルダパス
+        # ランクごとのフォルダパスの管理(辞書)
         self.rankpath = {
             "N": "01.Rank_N",
             "N+": "02.Rank_N+",

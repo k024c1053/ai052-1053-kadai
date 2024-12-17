@@ -4,9 +4,10 @@ from character_pool import CharacterPool
 
 
 class Gacha:
-    NORMAL_COST = 100
-    ELEVEN_COST = 1000
+    NORMAL_COST = 100     # 通常ガチャのコスト
+    ELEVEN_COST = 1000    # 11連ガチャのコスト
 
+    # コンストラクタ
     def __init__(self):
         self.character_pool = CharacterPool()
         self.play_count = 0
