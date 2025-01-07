@@ -37,18 +37,32 @@
             <li>11連ガチャプレイ回数: {{ summary['eleven_count'] }}回</li>
         </ul>
         <h3>コレクション状況</h3>
-        <ul>
-            <li>N: {{ summary['collected_counts']['N'] }} 種類</li>
-            <li>N+: {{ summary['collected_counts']['N+'] }} 種類</li>
-            <li>R: {{ summary['collected_counts']['R'] }} 種類</li>
-            <li>R+: {{ summary['collected_counts']['R+'] }} 種類</li>
-            <li>SR: {{ summary['collected_counts']['SR'] }} 種類</li>
-            <li>SR+: {{ summary['collected_counts']['SR+'] }} 種類</li>
+        <ul style="list-style: none; padding: 0;">
+            <li style="display: flex; justify-content: space-between; font-family: monospace;">
+                <span>N:</span><span>{{ summary['collected_counts']['N'] }} 種類</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; font-family: monospace;">
+                <span>N+:</span><span>{{ summary['collected_counts']['N+'] }} 種類</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; font-family: monospace;">
+                <span>R:</span><span>{{ summary['collected_counts']['R'] }} 種類</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; font-family: monospace;">
+                <span>R+:</span><span>{{ summary['collected_counts']['R+'] }} 種類</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; font-family: monospace;">
+                <span>SR:</span><span>{{ summary['collected_counts']['SR'] }} 種類</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; font-family: monospace;">
+                <span>SR+:</span><span>{{ summary['collected_counts']['SR+'] }} 種類</span>
+            </li>
         </ul>
 
+
         <form action="/reset" method="POST">
-            <button type="submit" class="btn btn-warning">リセット</button>
+            <button type="submit" class="btn btn-warning">すべての記録を破棄する</button>
         </form>
+        <p>※破棄の確認画面はありません！誤作動で押してしまっても復旧はできません。</p>
     </div>
 </body>
 
