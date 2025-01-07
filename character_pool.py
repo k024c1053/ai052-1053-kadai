@@ -4,6 +4,7 @@ import random
 # キャラクターの画像パスを管理するクラス
 class CharacterPool:
 
+    # コンストラクタ
     def __init__(self):
         # ランクごとのフォルダパスの管理(辞書)
         self.rankpath = {
@@ -15,14 +16,32 @@ class CharacterPool:
             "SR+": "06.Rank_SR+"
         }
 
-        # 各ランクに対するキャラクター画像ファイル名
+        # 各ランクに対するキャラクター画像ファイルパス
         self.characters = {
-            "N": [f"{self.rankpath['N']}/{j}.jpg" for j in range(1, 21)],
-            "N+": [f"{self.rankpath['N+']}/{j}.jpg" for j in range(1, 21)],
-            "R": [f"{self.rankpath['R']}/{j}.jpg" for j in range(1, 16)],
-            "R+": [f"{self.rankpath['R+']}/{j}.jpg" for j in range(1, 16)],
-            "SR": [f"{self.rankpath['SR']}/{j}.jpg" for j in range(1, 11)],
-            "SR+": [f"{self.rankpath['SR+']}/{j}.jpg" for j in range(1, 11)]
+            "N": [
+                f"./images/chara/{self.rankpath['N']}/{j}.jpg"
+                for j in range(1, 21)
+            ],  # 20種類
+            "N+": [
+                f"./images/chara/{self.rankpath['N+']}/{j}.jpg"
+                for j in range(1, 21)
+            ],  # 20種類
+            "R": [
+                f"./images/chara/{self.rankpath['R']}/{j}.jpg"
+                for j in range(1, 16)
+            ],  # 15種類
+            "R+": [
+                f"./images/chara/{self.rankpath['R+']}/{j}.jpg"
+                for j in range(1, 16)
+            ],  # 15種類
+            "SR": [
+                f"./images/chara/{self.rankpath['SR']}/{j}.jpg"
+                for j in range(1, 11)
+            ],  # 10種類
+            "SR+": [
+                f"./images/chara/{self.rankpath['SR+']}/{j}.jpg"
+                for j in range(1, 11)
+            ]  # 10種類
         }
 
     def get_random_character(self, rank_name):

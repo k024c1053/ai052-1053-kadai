@@ -16,6 +16,7 @@ class Gacha:
         self.eleven_count = 0
         self.sr_plus_collection = set()
 
+    # 実装部分
     def _draw_character(self, ranks):
         rank = random.choices([r.name for r in ranks],
                               [r.probability for r in ranks])[0]

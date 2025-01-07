@@ -1,6 +1,7 @@
 # キャラごとに振り分けるランクと確率を管理するクラス
 class Rank:
 
+  # コンストラクタ
   def __init__(self, name, probability):
     self.name = name
     self.probability = probability
