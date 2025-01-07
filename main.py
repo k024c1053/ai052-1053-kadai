@@ -9,7 +9,6 @@ gacha = Gacha()
 # Cookieの有効期限の定義
 COOKIE_MAX_AGE = 60 * 60 * 24 * 90  # 90日
 
-
 # Cookieを読み込むメソッド
 def load_cookies():
     gacha.play_count = int(request.cookies.get('play_count', 0))
@@ -17,6 +16,11 @@ def load_cookies():
     gacha.eleven_count = int(request.cookies.get('eleven_count', 0))
     gacha.cost = int(request.cookies.get('cost', 0))
 
+    # 各ランクの収集状況を読み込む
+    for rank in gacha.collected_characters.keys():
+        cookie_value = request.cookies.get(f'collected_{rank}', '')
+        if cookie_value:
+            gacha.collected_characters[rank] = set(cookie_value.split(','))
 
 # Cookieを保存するメソッド
 def save_cookies(response):
@@ -38,10 +42,16 @@ def save_cookies(response):
                         max_age=COOKIE_MAX_AGE,
                         expires=expires)
 
+    # 各ランクの収集状況を保存
+    for rank, characters in gacha.collected_characters.items():
+        response.set_cookie(f'collected_{rank}',
+                            ','.join(characters),
+                            max_age=COOKIE_MAX_AGE,
+                            expires=expires)
+
 
 @app.route('/')
 def index():
-
     load_cookies()  # Cookieを読み込むメソッドを呼び出す
     summary = gacha.get_summary()
     return render_template("index.html", summary=summary)
@@ -85,6 +95,11 @@ def reset():
     response.delete_cookie('single_count')
     response.delete_cookie('eleven_count')
     response.delete_cookie('cost')
+
+    # 各ランクの収集状況のCookieも削除
+    for rank in gacha.collected_characters.keys():
+        response.delete_cookie(f'collected_{rank}')
+
     return response
 
 

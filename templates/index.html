@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <title>ガチャシミュレーション</title>
+    <title>ガチャガチャシミュレーター</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container">
-        <h1 class="text-center my-4">ガチャシミュレーション</h1>
+        <h1 class="text-center my-4">ガチャガチャシミュレーター</h1>
 
         <form action="/gacha" method="POST" class="text-center">
             <button type="submit" name="gacha_type" value="single" class="btn btn-primary">通常ガチャ</button>
@@ -16,23 +18,32 @@
 
         <h2>結果</h2>
         {% if results %}
-            <div class="d-flex flex-wrap">
-                {% for rank, character in results %}
-                    <div class="card m-2">
-                        <p>{{ rank }}</p>
-                        <img src="{{ url_for('static', filename='images/' + character) }}" alt="{{ character }}" class="img-fluid">
-                    </div>
-                {% endfor %}
+        <div class="d-flex flex-wrap">
+            {% for rank, character in results %}
+            <div class="card m-2">
+                <p>{{ rank }}</p>
+                <img src="{{ url_for('static', filename='images/' + character) }}" alt="{{ character }}"
+                    class="img-fluid">
             </div>
+            {% endfor %}
+        </div>
         {% endif %}
 
-        <h2>累計結果</h2>
+        <h3>プレイ記録</h3>
         <ul>
-            <li>引いた回数: {{ summary['play_count'] }}回</li>
-            <li>通常ガチャ: {{ summary['single_count'] }}回</li>
-            <li>11連ガチャ: {{ summary['eleven_count'] }}回</li>
-            <li>使った金額: {{ summary['cost'] }}円</li>
-            <li>SR+コレクション: {{ summary['sr_plus_collection'] }} / 10 種類</li>
+            <li>総課金額: {{ summary['cost'] }}円</li>
+            <li>枚数: {{ summary['play_count'] }}回</li>
+            <li>通常ガチャプレイ回数: {{ summary['single_count'] }}回</li>
+            <li>11連ガチャプレイ回数: {{ summary['eleven_count'] }}回</li>
+        </ul>
+        <h3>コレクション状況</h3>
+        <ul>
+            <li>N: {{ summary['collected_counts']['N'] }} 種類</li>
+            <li>N+: {{ summary['collected_counts']['N+'] }} 種類</li>
+            <li>R: {{ summary['collected_counts']['R'] }} 種類</li>
+            <li>R+: {{ summary['collected_counts']['R+'] }} 種類</li>
+            <li>SR: {{ summary['collected_counts']['SR'] }} 種類</li>
+            <li>SR+: {{ summary['collected_counts']['SR+'] }} 種類</li>
         </ul>
 
         <form action="/reset" method="POST">
@@ -40,4 +51,5 @@
         </form>
     </div>
 </body>
+
 </html>
