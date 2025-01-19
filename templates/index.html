@@ -12,8 +12,8 @@
         <h1 class="text-center my-4">ガチャガチャシミュレーター</h1>
 
         <form action="/gacha" method="POST" class="text-center">
-            <button type="submit" name="gacha_type" value="single" class="btn btn-primary">通常ガチャ</button>
-            <button type="submit" name="gacha_type" value="eleven" class="btn btn-danger">11連ガチャ</button>
+            <button type="submit" name="gacha_type" value="single" class="btn btn-primary">ノーマルガチャ【100円】</button>
+            <button type="submit" name="gacha_type" value="eleven" class="btn btn-danger">11連ガチャ【1000円】</button>
         </form>
 
         <h2>結果</h2>
@@ -22,8 +22,7 @@
             {% for rank, character in results %}
             <div class="card m-2">
                 <p>{{ rank }}</p>
-                <img src="{{ url_for('static', filename='images/' + character) }}" alt="{{ character }}"
-                    class="img-fluid">
+                <img src="{{ url_for('static', filename=character) }}" alt="character">
             </div>
             {% endfor %}
         </div>
@@ -39,13 +38,13 @@
         <h3>コレクション状況</h3>
         <ul style="list-style: none; padding: 0;">
             <li style="display: flex; justify-content: space-between; font-family: monospace;">
-                <span>N:</span><span>{{ summary['collected_counts']['N'] }} 種類</span>
+                <span>N: </span><span>{{ summary['collected_counts']['N'] }} 種類</span>
             </li>
             <li style="display: flex; justify-content: space-between; font-family: monospace;">
                 <span>N+:</span><span>{{ summary['collected_counts']['N+'] }} 種類</span>
             </li>
             <li style="display: flex; justify-content: space-between; font-family: monospace;">
-                <span>R:</span><span>{{ summary['collected_counts']['R'] }} 種類</span>
+                <span>R: </span><span>{{ summary['collected_counts']['R'] }} 種類</span>
             </li>
             <li style="display: flex; justify-content: space-between; font-family: monospace;">
                 <span>R+:</span><span>{{ summary['collected_counts']['R+'] }} 種類</span>
@@ -59,11 +58,39 @@
         </ul>
 
 
-        <form action="/reset" method="POST">
-            <button type="submit" class="btn btn-warning">すべての記録を破棄する</button>
-        </form>
-        <p>※破棄の確認画面はありません！誤作動で押してしまっても復旧はできません。</p>
+        <!-- リセットボタン -->
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#resetModal">
+            すべての記録を破棄する
+        </button>
+        <p>※確認画面が表示されます。</p>
     </div>
+
+    <!-- モーダル（確認ダイアログ） -->
+    <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resetModalLabel">記録を破棄しますか？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    これまでの記録（総課金額、枚数...他）をすべて破棄します。よろしいですか？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <form action="/reset" method="POST">
+                        <button type="submit" class="btn btn-danger">OK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

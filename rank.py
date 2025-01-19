@@ -7,7 +7,7 @@ class Rank:
     self.probability = probability
 
 
-# 通常ガチャのランクと確率(0-100)の定義
+# 通常ガチャのランクと確率(0-100%)の定義
 RANKS_SINGLE = [
     Rank("N", 33),
     Rank("N+", 25),
