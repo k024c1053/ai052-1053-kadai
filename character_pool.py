@@ -44,7 +44,6 @@ class CharacterPool:
             ]  # 10種類
         }
 
-
     def get_random_character(self, rank_name):
         # 指定されたランクからランダムにキャラクター画像のパスを返す
         return random.choice(self.characters[rank_name])
