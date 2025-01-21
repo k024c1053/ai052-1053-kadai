@@ -1,5 +1,5 @@
-授業:  Web Development Practice
-担当:  Mr.Sueyoshi
+授業:  Web Development Practice  
+担当:  Mr.Sueyoshi  
 出題:  2024/11/12  
 期限:  2025/01/20
 
@@ -101,7 +101,31 @@ SR+が当選した場合、このキャラのいずれか1枚が等確率で入�
 ・記録の管理システム（セッションデータの制御）  
 ・記録の破棄（確認メッセージ付、課金額や獲得状況などがすべて破棄される）  
 
-## クレジット
-開発環境: Replit  
-開発言語: Python 3.12
-開発者:  Taku
+# クレジット
+## 1. プロジェクト概要
+プロジェクト: ガチャガチャシミュレーター  
+開発者: k024c1053   
+開発期間: 2024.11.12 ~ 2025.1.20  
+開発目的: Flaskを使用したWebアプリケーション開発の練習および、ガチャシステムの構築体験。  
+
+## 2. 使用技術
+プログラミング言語: Python 3  
+フレームワーク: Flask  
+フロントエンド: HTML5, CSS3, Bootstrap 4.5.2（CSSフレームワーク）  
+データ保存: Flaskセッション（サーバーサイド）  
+
+## 3. 使用した外部リソース
+### キャラクター画像:
+「ジュエルセイバーFREE」 (http://www.jewel-s.jp/)  
+※著作権表示: 「ジュエルセイバーFREE」サイトで配布されている素材を利用しています。  
+
+### CSSフレームワーク:  
+Bootstrap (https://getbootstrap.com/)  
+
+## 4. 動作確認環境
+### 開発環境
+OS: Windows 11 / Replit  
+Python: Python 3.12.x  
+### ブラウザ動作確認
+Google Chrome（Latest version）  
+Mozilla Firefox（Latest version）  
